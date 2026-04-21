@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Http\Resources\MessageResource;
 
 class MessageController extends Controller
 {
@@ -17,30 +18,29 @@ class MessageController extends Controller
 
         $message = Message::create([
             'sender_id' => auth()->id(),
-            'receiver_id' => $request->receiver_id,
+            'receiver_id' => (int) $request->receiver_id,
             'message_content' => $request->message_content
         ]);
 
-        return response()->json([
+        return (new MessageResource($message))->additional([
             'success' => true,
             'message' => 'Pesan berhasil dikirim',
-            'data' => $message,
         ],200);
     }
 
     public function index(Request $request)
     {
-        $message = Message::where(function($query) use ($request) {
-            $query->where('sender_id', auth()->id())
-                  ->where('receiver_id', $request->teman_id);
-        })->orWhere(function($query) use ($request) {
-            $query->where('sender_id', $request->teman_id)
-                  ->where('receiver_id', auth()->id());
-        })->latest()->get();
+        $friend_id = (int) $request->friend_id;
+        $user_id = auth()->id();
 
-        return response()->json([
-            'success' => true,
-            'data' => $message,
-        ]);
+        $message = Message::where(function($query) use ($user_id, $friend_id) {
+            $query->where('sender_id', $user_id)
+                  ->where('receiver_id', $friend_id);
+        })->orWhere(function($query) use ($user_id, $friend_id) {
+            $query->where('sender_id', $friend_id)
+                  ->where('receiver_id', $user_id);
+        });
+
+        return MessageResource::collection($message->with(['sender', 'receiver'])->latest()->paginate(20));
     }
 }
