@@ -12,7 +12,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/user', function (Request $request) {
         return $request->user();
-    })->middleware('auth:sanctum');
+        })->middleware('auth:sanctum');
+    Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::patch('/message/read', [MessageController::class, 'markAsRead']);
     Route::apiResource('message', MessageController::class);
