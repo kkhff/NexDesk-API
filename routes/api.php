@@ -14,6 +14,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     })->middleware('auth:sanctum');
 
+    Route::patch('/message/read', [MessageController::class, 'markAsRead']);
     Route::apiResource('message', MessageController::class);
 
 });

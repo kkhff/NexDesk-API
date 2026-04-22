@@ -21,6 +21,8 @@ class MessageResource extends JsonResource
             'receiver_id' => $this->receiver_id,
             'receiver_name' => $this->receiver->name ?? 'unknown',
             'message_content' => $this->message_content,
+            'is_read' => $this->read_at !== null,
+            'read_at' => $this->read_at ? $this->read_at->format('H:i') : null,
             'date_message' => $this->created_at->format('d M Y H:i'),
         ];
     }
