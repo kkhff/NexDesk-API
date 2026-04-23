@@ -1,34 +1,36 @@
-# 🚀 NexDesk API (Headless Chat System)
+# NexDesk API (Sistem Chat Headless)
 
-NexDesk API is a robust, scalable backend for a real-time messaging and reporting application. Built with **Laravel 11**, it implements a **Polyglot Database Architecture** utilizing both relational (MySQL) and NoSQL (MongoDB) databases to optimize data storage and retrieval.
+NexDesk API adalah *backend* tangguh dan *scalable* untuk aplikasi pesan (chat) dan pelaporan. Dibangun menggunakan **Laravel 13**, API ini menerapkan **Arsitektur Database Polyglot** yang menggabungkan *database* relasional (MySQL) dan NoSQL (MongoDB) untuk mengoptimalkan penyimpanan dan performa data.
 
-## ✨ Key Features & Business Logic
+## Fitur Utama & Logika Bisnis
 
-* **Hybrid Database System:** Uses MySQL for structured relational data (Users, Authentication) and MongoDB for high-volume, document-based data (Messages).
-* **Cross-Database Eloquent Relations:** Seamless integration between MySQL `User` models and MongoDB `Message` models using `jenssegers/mongodb` (HybridRelations).
-* **Advanced Message Management:**
-    * **Edit Limits:** Users can only edit messages within a 60-minute window.
-    * **Strict Authorization:** Users can only update or delete their own messages (403 Forbidden protection).
-    * **Read Receipts:** Mass-update functionality for `read_at` timestamps to optimize database queries.
-* **Secure Authentication:** Token-based authentication using **Laravel Sanctum**.
-* **Standardized JSON Responses:** Elegant and consistent output formatting using Laravel API Resources and Pagination.
+* **Sistem Database Hybrid:** Menggunakan MySQL untuk data relasional terstruktur (User, Autentikasi) dan MongoDB untuk data berbasis dokumen bervolume tinggi (Pesan Chat).
+* **Relasi Lintas-Database (Cross-DB):** Integrasi mulus antara model `User` di MySQL dan model `Message` di MongoDB menggunakan *package* `jenssegers/mongodb` (HybridRelations).
+* **Manajemen Pesan Lanjutan:**
+    * **Batas Waktu Edit:** Pengguna hanya dapat mengedit pesan dalam batas waktu maksimal 60 menit setelah dikirim.
+    * **Otorisasi Ketat:** Pengguna hanya dapat mengubah atau menghapus pesannya sendiri (Dilengkapi proteksi 403 Forbidden).
+    * **Status Baca (Read Receipts):** Fitur pembaruan massal untuk menandai pesan telah dibaca (`read_at`), dirancang agar ringan dan efisien di sisi *database*.
+* **Autentikasi Aman:** Sistem otentikasi berbasis Token menggunakan **Laravel Sanctum**.
+* **Standarisasi Respons JSON:** *Output* API yang rapi dan konsisten menggunakan *API Resources* dan *Pagination* bawaan Laravel.
 
-## 🛠️ Tech Stack
+## Tech Stack (Teknologi yang Digunakan)
 
-* **Framework:** Laravel 11.x
+* **Framework:** Laravel 13.x
 * **Environment:** Docker (Laravel Sail)
-* **Relational DB:** MySQL 8.0 (Users, Auth, Reports)
-* **NoSQL DB:** MongoDB (Chat Messages)
-* **Authentication:** Laravel Sanctum
-* **Client Testing:** Postman
+* **Database Relasional:** MySQL 8.0 (Users, Auth, Reports)
+* **Database NoSQL:** MongoDB (Chat Messages)
+* **Autentikasi:** Laravel Sanctum
+* **Testing API:** Postman
 
+[Klik di sini untuk melihat Dokumentasi Postman NexDesk API]  
+https://crimson-satellite-1456435.postman.co/workspace/kkh's-Workspace~513eca4e-75f6-45a2-8afd-b1b7c048edb9/collection/51063118-437c9f62-8580-4440-8924-2297f1e98641?action=share&source=copy-link&creator=51063118
 
 ## Cara Menjalankan Project (Lokal)
 
 **1. Clone Repository:**
 ```bash
 git clone https://github.com/kkhff/NexDesk-API.git
-cd LaporHub-API
+cd NexDesk-API
 ```
 
 **2. Setup Environment**
@@ -46,7 +48,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
-    laravelsail/php83-composer:latest \
+    laravelsail/php8.3-composer:latest \
     composer install --ignore-platform-reqs
 ```
 
@@ -58,7 +60,6 @@ docker run --rm \
 **5. Generate Key & Migrate**
 ```bash
 ./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan storage:link
 ./vendor/bin/sail artisan migrate --seed
 ```
 
