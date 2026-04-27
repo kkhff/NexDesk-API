@@ -2,6 +2,8 @@
 
 NexDesk API adalah *backend* tangguh dan *scalable* untuk aplikasi pesan (chat) dan pelaporan. Dibangun menggunakan **Laravel 13**, API ini menerapkan **Arsitektur Database Polyglot** yang menggabungkan *database* relasional (MySQL) dan NoSQL (MongoDB) untuk mengoptimalkan penyimpanan dan performa data.
 
+**Catatan:** Repository ini murni berisi **Backend (REST API)**. Didesain secara *headless* agar siap dikonsumsi oleh berbagai platform Frontend (React, Vue, Mobile App, dll).
+
 ## Fitur Utama & Logika Bisnis
 
 * **Sistem Database Hybrid:** Menggunakan MySQL untuk data relasional terstruktur (User, Autentikasi) dan MongoDB untuk data berbasis dokumen bervolume tinggi (Pesan Chat).
@@ -22,7 +24,7 @@ NexDesk API adalah *backend* tangguh dan *scalable* untuk aplikasi pesan (chat) 
 * **Autentikasi:** Laravel Sanctum
 * **Testing API:** Postman
 
-[Klik di sini untuk melihat Dokumentasi Postman NexDesk API]  
+**[Klik di sini untuk melihat Dokumentasi Postman NexDesk API]**  
 https://crimson-satellite-1456435.postman.co/workspace/kkh's-Workspace~513eca4e-75f6-45a2-8afd-b1b7c048edb9/collection/51063118-437c9f62-8580-4440-8924-2297f1e98641?action=share&source=copy-link&creator=51063118
 
 ## Cara Menjalankan Project (Lokal)
