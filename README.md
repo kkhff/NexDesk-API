@@ -64,9 +64,3 @@ docker run --rm \
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
 ```
-
-## API Endpoints
-| Role | Email | Password |
-| :--- | :--- | :--- |
-| Admin | `admin@laporhub.com` | password123 |
-| Petugas | `petugas@laporhub.com` | password123 |
